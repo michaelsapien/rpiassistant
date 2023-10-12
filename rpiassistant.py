@@ -7,7 +7,7 @@ listening = True
 engine = pyttsx3.init()
 
 #Set your openai api key and customizing the chatgpt role
-openai.api_key = "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"
+openai.api_key = ""
 messages = [{"role": "system", "content": "Your name is pybot and give answers in 2 lines"}]
 
 #Customizing The output voice
@@ -25,7 +25,6 @@ def get_response(user_input):
     ChatGPT_reply = response["choices"][0]["message"]["content"]
     messages.append({"role": "assistant", "content": ChatGPT_reply})
     return ChatGPT_reply
-
 
 while listening:
     with sr.Microphone() as source:
