@@ -5,16 +5,16 @@ import sys
 import os
 import os
 import sys
-import warnings
+# import warnings
 
-if not sys.warnoptions:
-    warnings.simplefilter("ignore")
+# if not sys.warnoptions:
+#     warnings.simplefilter("ignore")
 
-# Suppress ALSA errors by redirecting stderr
-stderr_fileno = sys.stderr.fileno()
-null_fileno = os.open(os.devnull, os.O_WRONLY)
-os.dup2(null_fileno, stderr_fileno)
-os.close(null_fileno)
+# # Suppress ALSA errors by redirecting stderr
+# stderr_fileno = sys.stderr.fileno()
+# null_fileno = os.open(os.devnull, os.O_WRONLY)
+# os.dup2(null_fileno, stderr_fileno)
+# os.close(null_fileno)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 wakeword='chatbot'
