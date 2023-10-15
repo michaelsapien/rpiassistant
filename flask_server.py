@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/post_endpoint', methods=['POST'])
+@app.route('/chat', methods=['POST'])
 def post_example():
     # Get JSON data
     data = request.get_json()
