@@ -2,8 +2,9 @@ import speech_recognition as sr
 import openai
 import pyttsx3
 import sys
+import os
+openai.api_key = os.getenv("OPENAI_API_KEY")
 wakeword='chatbot'
-openai.api_key = "xxx"
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
