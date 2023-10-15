@@ -5,20 +5,7 @@ import openai
 import sys
 
 wakeword='chatbot'
-openai.api_key = "your-api-key"
-
-User
-import speech_recognition as sr
-import openai
-import pyttsx3
-import sys
-wakeword='chatbot'
 openai.api_key = "xxx"
-
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-rate = engine.getProperty('rate')
-volume = engine.getProperty('volume')
 
 messages = [{"role": "system", "content": "Your name is "+wakeword+" you were developed by stem-x in June 2016 and give answers in two sentences"}]
 
