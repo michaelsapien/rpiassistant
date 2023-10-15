@@ -2,17 +2,15 @@ import speech_recognition as sr
 import openai
 import pyttsx3
 import sys
-
-bot_name='panvi'
-openai.api_key = "xxx"
+wakeword='chatbot'
+openai.api_key = "xx"
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 rate = engine.getProperty('rate')
 volume = engine.getProperty('volume')
 
-
-messages = [{"role": "system", "content": "Your name is "+bot_name+" you were developed by stemx in June 2016. STEMx group were one of the first to introduce cutting edge technology in k-12 education and trainings since 2016.Two years back we introduced hands-on LEGO Robotics, Coding, and early concepts of STEM. Today our online STEM program has no limit to region, as we have students from India, Dubai, USA, Singapore, England, Nepal, SA, Canada, and Japan. 1,00,000+ students across India experienced STEM Education through STEMx 100+ Schools across India 10+ Channel partners across India 4 STEMx Studios across south India Online STEM Program in 7+ countries Students won national & international awards in Robotics  Competition Strong STEMx alumni community For more than 7+ Years  Founders of STEMx have been working with parents, teachers, schools, and governments to deliver playful learning experiences that bring  STEM subjects like Robotics, Coding, 3D Printing, Electronics & Drones to life  for the students and make learning fun and impactful and you should support Institute by giving Live campus tour for new prospects to parents, Can be an assistant teacher in classroom,Take students attendance and institute's receptionist"}]#give answers in two sentences
+messages = [{"role": "system", "content": "Your name is "+wakeword+" you were developed by stem-x in June 2016 and give answers in two sentences"}]
 
 def get_response(user_input):
     messages.append({"role": "user", "content": user_input})
@@ -41,11 +39,12 @@ def main():
                 print("Recognizing...")
                 # Use Google Web Speech API
                 text = recognizer.recognize_google(audio)
-                if bot_name in text.lower():           
+                if wakeword in text.lower():           
                     if('exit' in text.lower()):
-                        sys.exit()
-                    response_from_openai =  (text)
+                        print("exiting...")
+                        sys.exit()                    
                     print("Q: " + text)
+                    response_from_openai = get_response(text)
                     print("A: " + response_from_openai)
                     engine.setProperty('rate', 120)
                     engine.setProperty('volume', volume)
