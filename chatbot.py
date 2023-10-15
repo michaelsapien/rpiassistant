@@ -53,6 +53,7 @@ def main():
                 print("Recognizing...")
                 # Use Google Web Speech API
                 text = recognizer.recognize_google(audio)
+                print(text)
                 if wakeword in text.lower():           
                     if('exit' in text.lower()):
                         print("exiting...")
