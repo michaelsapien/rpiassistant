@@ -39,12 +39,14 @@ def get_response(user_input):
 def main():
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
+    print(microphone)
 
     print("Please wait. Calibrating microphone...")
     # Calibrate the microphone to silence to avoid static noise
     with microphone as source:
         recognizer.adjust_for_ambient_noise(source, duration=5)
-        print("Microphone calibrated")
+    print (source)
+    print("Microphone calibrated")
     while True:
         print("Say something:")
         with microphone as source:
