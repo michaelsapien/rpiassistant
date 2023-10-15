@@ -15,8 +15,8 @@ import sys
 # null_fileno = os.open(os.devnull, os.O_WRONLY)
 # os.dup2(null_fileno, stderr_fileno)
 # os.close(null_fileno)
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
+print(openai.api_key)
 wakeword='chatbot'
 
 engine = pyttsx3.init()
