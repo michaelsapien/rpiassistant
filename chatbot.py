@@ -1,3 +1,13 @@
+from gtts import gTTS
+import os
+import speech_recognition as sr
+import openai
+import sys
+
+wakeword='chatbot'
+openai.api_key = "your-api-key"
+
+User
 import speech_recognition as sr
 import openai
 import pyttsx3
@@ -22,6 +32,11 @@ def get_response(user_input):
     messages.append({"role": "assistant", "content": ChatGPT_reply})
     return ChatGPT_reply
 
+def speak_gtts(text, lang='en'):
+    tts = gTTS(text=text, lang=lang, slow=False)
+    tts.save("response.mp3")
+    os.system("mpg321 response.mp3")
+
 def main():
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
@@ -31,25 +46,24 @@ def main():
     with microphone as source:
         recognizer.adjust_for_ambient_noise(source, duration=5)
         print("Microphone calibrated")
+    
     while True:
         print("Say something:")
         with microphone as source:
             try:
                 audio = recognizer.listen(source, timeout=10)
                 print("Recognizing...")
-                # Use Google Web Speech API
                 text = recognizer.recognize_google(audio)
-                if wakeword in text.lower():           
+                
+                if wakeword in text.lower():
                     if('exit' in text.lower()):
                         print("exiting...")
                         sys.exit()                    
                     print("Q: " + text)
                     response_from_openai = get_response(text)
                     print("A: " + response_from_openai)
-                    engine.setProperty('rate', 120)
-                    engine.setProperty('volume', volume)
-                    engine.say(response_from_openai)
-                    engine.runAndWait()
+                    speak_gtts(response_from_openai)  # Using gTTS instead of pyttsx3
+
             except sr.WaitTimeoutError:
                 print("Speech not detected. Listening again...")
             except sr.UnknownValueError:
