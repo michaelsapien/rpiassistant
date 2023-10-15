@@ -3,7 +3,7 @@ import openai
 import pyttsx3
 import sys
 wakeword='chatbot'
-openai.api_key = "xx"
+openai.api_key = "xxx"
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
